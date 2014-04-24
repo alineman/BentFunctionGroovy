@@ -1,3 +1,4 @@
+package ru.spb.ivan
 /**
  * Created with IntelliJ IDEA.
  * User: ivan
@@ -30,12 +31,16 @@ class StringHelper {
         (int)Math.ceil(Math.log(x)/Math.log(2))
     }
 
+    static int log4M(int x) {
+        (int)Math.ceil(Math.log(x)/Math.log(4))
+    }
+
     static String binary(int i, int length) {
         final String zero = "00000000000000000000000000000000"
 
         String result = Integer.toBinaryString(i)
-        int dif = Math.abs(length - result.length())
-        if (dif > 0)
+        int dif = length - result.length()
+        if (dif > 0 && result.length() > 0)
             result = zero.substring(0, dif) + result
 
         result
