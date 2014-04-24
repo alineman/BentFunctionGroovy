@@ -8,7 +8,6 @@
     <artifactId>first</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-<dependencyManagement>
 <dependencies>
     <dependency>
         <groupId>org.codehaus.groovy</groupId>
@@ -16,5 +15,4 @@
         <version>2.2.2</version>
     </dependency>
 </dependencies>
-</dependencyManagement>
 </project>
