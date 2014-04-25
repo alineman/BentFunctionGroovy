@@ -13,20 +13,38 @@ class SimpleStart {
         println("Представление функции как числа: " + code)
         def function = new Number(code)
         println("Представление функции, как двоичного вектора: " + function)
-//        for (int j = 1; j < max; j++) {
-//            print (new Number(j) + " ")
-//            println(j + " " + new Number(j, StringHelper.log2M(j)))
-//            println(j + ' ' + StringHelper.log2M(j) )
-//        }
+//        def stringFunction = function.toString()
+        def stringFunction = "10010101"
 
-        printDefinition(function.toString())
+        printDefinition(stringFunction)
+
+        createANF(stringFunction)
+
     }
 
     static printDefinition(String function) {
         println('Таблица истинности: ')
         def length = function.length()
-        for (int i = 0; i < length; i++) {
-            println(StringHelper.binary(i, StringHelper.log2(length)) + " | " + function.charAt(length - 1 - i))
+        def list = createTableOfTrue(StringHelper.log2M(length))
+        list.eachWithIndex { String entry, int i ->
+            println( entry + " | " + function.charAt(length - 1 - i))
         }
+    }
+
+    static List<String> createTableOfTrue(int variables){
+        List<String> result =[]
+        for (int i = 0; i < Math.pow(2,variables); i++){
+            result+=StringHelper.binary(i,variables)
+        }
+
+        result
+    }
+
+    static createANF(String function){
+        def length = function.length()
+        def list = createTableOfTrue(StringHelper.log2M(length))
+        def matrix = new ANFMatrix(list, function)
+        print( matrix)
+        matrix.makeANF()
     }
 }
