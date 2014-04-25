@@ -39,12 +39,12 @@ class ANFMatrix {
             temp.add(name)
         }
         this.names = temp
-        int max = 0
-        names.each {
-            if (it.length() > max)
-                max = it.length()
-        }
-        this.degF = max
+//        int max = 0
+//        names.each {
+//            if (it.length() > max)
+//                max = it.length()
+//        }
+//        this.degF = max
     }
 
     String toString() {
@@ -59,14 +59,20 @@ class ANFMatrix {
             }
             println ""
         }
-        println("deg(f) = " + degF)
     }
 
     String makeANF() {
         println ""
+        degF = 0
         for (int i = 0; i < dimension; i++) {
-            if (matrix[0][i] == 1)
-                print(names.get(i) + " ")
+            if (matrix[0][i] == 1) {
+                def part = names.get(i)
+                print(part + " ")
+                if (part.length() > degF)
+                     degF = part.length()
+            }
         }
+
+        println("\ndeg(f) = " + degF)
     }
 }
