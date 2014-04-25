@@ -11,8 +11,8 @@ class ANFMatrix {
     int dimension
     int[][] matrix
     List<String> names
-    final String alphabet ="abcdefgh"
-
+    final String alphabet = "abcdefgh"
+    int degF
 
     ANFMatrix(List<String> codes, String function) {
         if (codes.size() != function.length())
@@ -25,20 +25,26 @@ class ANFMatrix {
         }
         for (int j = 1; j < dimension; j++) {
             for (int i = 0; i < dimension - j; i++) {
-                matrix[i][j]= matrix[i][j-1] == matrix[i+1][j-1] ? 0 : 1
+                matrix[i][j] = matrix[i][j - 1] == matrix[i + 1][j - 1] ? 0 : 1
             }
         }
         def temp = new ArrayList<String>(dimension)
         codes.each {
             String name = ""
-               for (int i =0; i<it.length();i++)
-                   if (it.substring(i,i+1) == "1")
-                       name+=alphabet.charAt(i).toString()
+            for (int i = 0; i < it.length(); i++)
+                if (it.substring(i, i + 1) == "1")
+                    name += alphabet.charAt(i).toString()
             if (name.length() == 0)
                 name = "1"
             temp.add(name)
         }
         this.names = temp
+        int max = 0
+        names.each {
+            if (it.length() > max)
+                max = it.length()
+        }
+        this.degF = max
     }
 
     String toString() {
@@ -53,11 +59,12 @@ class ANFMatrix {
             }
             println ""
         }
+        println("deg(f) = " + degF)
     }
 
-    String makeANF(){
+    String makeANF() {
         println ""
-        for (int i = 0; i<dimension;i++){
+        for (int i = 0; i < dimension; i++) {
             if (matrix[0][i] == 1)
                 print(names.get(i) + " ")
         }

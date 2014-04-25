@@ -35,7 +35,7 @@ class Number {
     }
 
     String get(int i) {
-        stringView.charAt(power - i -1)
+        stringView.charAt(maxValue - i -1)
     }
 
     String toString() {
