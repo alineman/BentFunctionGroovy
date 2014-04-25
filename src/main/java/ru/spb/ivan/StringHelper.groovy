@@ -31,9 +31,9 @@ class StringHelper {
         (int)Math.ceil(Math.log(x)/Math.log(2))
     }
 
-    static int log4M(int x) {
-        (int)Math.ceil(Math.log(x)/Math.log(4))
-    }
+//    static int log4M(int x) {
+//        (int)Math.ceil(Math.log(x)/Math.log(4))
+//    }
 
     static String binary(int i, int length) {
         final String zero = "00000000000000000000000000000000"

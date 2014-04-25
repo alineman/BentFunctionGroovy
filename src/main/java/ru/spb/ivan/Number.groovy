@@ -27,16 +27,15 @@ class Number {
             this.stringView = StringHelper.binary(0, power)
         }
         this.value = value
-        this.stringView = StringHelper.binary(value, power)
 
         this.power = power
-        this.maxValue = (int) Math.pow(2, power) - 1
-        this.lengthString = StringHelper.log2M(power)
+        this.maxValue = (int) Math.pow(2, StringHelper.log2M(power))
+        this.lengthString = StringHelper.log2M(maxValue)
+        this.stringView = StringHelper.binary(value, maxValue)
     }
 
     String get(int i) {
-//        stringView.charAt(stringView.length() - StringHelper.log2M(i+1))
-        stringView.charAt(maxValue - i -1)
+        stringView.charAt(power - i -1)
     }
 
     String toString() {

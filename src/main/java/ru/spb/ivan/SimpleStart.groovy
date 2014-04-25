@@ -9,24 +9,24 @@ package ru.spb.ivan
 class SimpleStart {
 
     public static void main(String[] args) {
-        def max = 31
-        for (int j = 1; j < max; j++) {
+        def code = 42835
+        println("Представление функции как числа: " + code)
+        def function = new Number(code)
+        println("Представление функции, как двоичного вектора: " + function)
+//        for (int j = 1; j < max; j++) {
 //            print (new Number(j) + " ")
-            println(j + " " + new Number(j, StringHelper.log2M(max)))
-        }
+//            println(j + " " + new Number(j, StringHelper.log2M(j)))
+//            println(j + ' ' + StringHelper.log2M(j) )
+//        }
 
-//        printDefinition(max)
+        printDefinition(function.toString())
     }
 
-    static printDefinition(int function) {
-        Number number = new Number(function)
-        int radix = number.getPower()
-        println(number.getPower())
-        println number
-        def maxValue = number.getMaxValue()
-        for (int i = 0; i <= maxValue; i++) {
-            println((new Number(i, StringHelper.log2M(maxValue)).toString() + " | " + number.get(i)))
+    static printDefinition(String function) {
+        println('Таблица истинности: ')
+        def length = function.length()
+        for (int i = 0; i < length; i++) {
+            println(StringHelper.binary(i, StringHelper.log2(length)) + " | " + function.charAt(length - 1 - i))
         }
     }
-
 }
